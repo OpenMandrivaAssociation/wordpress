@@ -3,7 +3,7 @@
 
 Summary:	WordPress is personal publishing platform
 Name:		wordpress
-Version:	2.1.2
+Version:	2.2.0
 Release:	%mkrel 1
 License:	GPL
 Group:		System/Servers
