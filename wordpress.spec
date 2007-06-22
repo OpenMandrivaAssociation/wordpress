@@ -3,7 +3,7 @@
 
 Summary:	WordPress is personal publishing platform
 Name:		wordpress
-Version:	2.2.0
+Version:	2.2.1
 Release:	%mkrel 1
 License:	GPL
 Group:		System/Servers
@@ -93,5 +93,3 @@ rm -f %{buildroot}/var/www/%{name}/license.txt
 %doc license.txt
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 /var/www/%{name}
-
-
