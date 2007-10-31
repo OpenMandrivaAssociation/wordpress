@@ -3,12 +3,12 @@
 
 Summary:	WordPress is personal publishing platform
 Name:		wordpress
-Version:	2.3
+Version:	2.3.1
 Release:	%mkrel 1
-License:	GPL
+License:	GPLv2+
 Group:		System/Servers
 URL:		http://wordpress.org/
-Source0:	ftp://ftp.stu.edu.tw/pub/wordpress/%{name}-%{version}.tar.bz2
+Source0:	http://wordpress.org/%{name}-%{version}.tar.gz
 Requires(pre):	apache-mod_php php-mysql
 Requires:	apache-mod_php php-mysql
 BuildArch:	noarch
