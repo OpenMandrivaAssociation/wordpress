@@ -14,7 +14,6 @@ Requires:	apache-mod_php php-mysql
 BuildArch:	noarch
 BuildRequires:	dos2unix
 BuildRequires:	apache-base >= 2.0.54
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 
 %description
 WordPress is a state-of-the-art, semantic, personal publishing platform with a
