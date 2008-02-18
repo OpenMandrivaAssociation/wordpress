@@ -1,7 +1,7 @@
 %define _provides_exceptions pear(wp-config.php)
 %define _requires_exceptions pear(wp-config.php)
 
-Summary:	WordPress is personal publishing platform
+Summary:	Personal publishing platform
 Name:		wordpress
 Version:	2.3.3
 Release:	%mkrel 1
