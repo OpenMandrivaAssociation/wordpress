@@ -3,12 +3,13 @@
 
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	2.3.3
-Release:	%mkrel 2
+Version:	2.5
+Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Servers
 URL:		http://wordpress.org/
 Source0:	http://wordpress.org/%{name}-%{version}.tar.gz
+Source1:	README.install.urpmi
 Requires(pre):	apache-mod_php php-mysql
 Requires:	apache-mod_php php-mysql
 BuildArch:	noarch
@@ -46,6 +47,9 @@ find . -type f | xargs chmod 644
 # strip away annoying ^M
 find -type f | grep -v "\.gif" | grep -v "\.png" | grep -v "\.jpg" | xargs dos2unix -U
 
+# disable wordpress update option
+sed -i -e "s/add_action/#add_action/g" wp-includes/update.php
+
 %build
 
 %install
@@ -54,6 +58,8 @@ find -type f | grep -v "\.gif" | grep -v "\.png" | grep -v "\.jpg" | xargs dos2u
 install -d %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
 install -d %{buildroot}%{_sysconfdir}/%{name}
 install -d %{buildroot}/var/www/%{name}
+
+#cp %{SOURCE1} ./README.install.urpmi
 
 cp -aRf * %{buildroot}/var/www/%{name}/
 
@@ -78,6 +84,7 @@ EOF
 
 # cleanup
 rm -f %{buildroot}/var/www/%{name}/license.txt
+cp %{SOURCE1} ./README.install.urpmi
 
 %post
 %_post_webapp
@@ -90,6 +97,7 @@ rm -f %{buildroot}/var/www/%{name}/license.txt
 
 %files
 %defattr(-,root,root)
+%doc README.install.urpmi
 %doc license.txt
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 /var/www/%{name}
