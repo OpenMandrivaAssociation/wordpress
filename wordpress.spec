@@ -1,9 +1,6 @@
-%define _provides_exceptions pear(wp-config.php)
-%define _requires_exceptions pear(wp-config.php)
-
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	2.6.5
+Version:	2.7
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Servers
