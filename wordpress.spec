@@ -1,17 +1,16 @@
 Summary:	Personal publishing platform
 Name:		wordpress
 Version:	2.9.1
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		System/Servers
 URL:		http://wordpress.org/
 Source0:	http://wordpress.org/%{name}-%{version}.tar.gz
 Source1:	README.install.urpmi
-Requires(pre):	apache-mod_php php-mysql
-Requires:	apache-mod_php php-mysql
+Requires:	apache-mod_php
+Requires:	php-mysql
 BuildArch:	noarch
-BuildRequires:	apache-base >= 2.0.54
-BuildRoot:	%{_tmppath}/%{name}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 WordPress is a state-of-the-art, semantic, personal publishing platform with a
@@ -46,7 +45,7 @@ sed -i -e "s/add_action/#add_action/g" wp-includes/update.php
 %build
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 install -d %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
 install -d %{buildroot}%{_sysconfdir}/%{name}
@@ -80,13 +79,17 @@ rm -f %{buildroot}/var/www/%{name}/license.txt
 cp %{SOURCE1} ./README.install.urpmi
 
 %post
+%if %mdkversion < 201010
 %_post_webapp
+%endif
 
 %postun
+%if %mdkversion < 201010
 %_postun_webapp
+%endif
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
