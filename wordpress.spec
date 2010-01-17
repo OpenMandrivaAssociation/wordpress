@@ -10,7 +10,6 @@ Source1:	README.install.urpmi
 Requires(pre):	apache-mod_php php-mysql
 Requires:	apache-mod_php php-mysql
 BuildArch:	noarch
-BuildRequires:	dos2unix
 BuildRequires:	apache-base >= 2.0.54
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 
@@ -40,9 +39,6 @@ find . -type d | xargs chmod 755
 
 # fix file perms
 find . -type f | xargs chmod 644
-
-# strip away annoying ^M
-find -type f | grep -v "\.gif" | grep -v "\.png" | grep -v "\.jpg" | xargs dos2unix -U
 
 # disable wordpress update option
 sed -i -e "s/add_action/#add_action/g" wp-includes/update.php
