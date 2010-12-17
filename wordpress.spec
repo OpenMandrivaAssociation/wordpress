@@ -1,7 +1,7 @@
 Summary:	Personal publishing platform
 Name:		wordpress
 Version:	3.0.3
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	GPLv2+
 Group:		System/Servers
 URL:		http://wordpress.org/
