@@ -1,6 +1,6 @@
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	3.1.1
+Version:	3.1.2
 Release:	%mkrel 1
 License:	GPLv2+
 Group:		System/Servers
