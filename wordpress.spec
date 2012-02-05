@@ -1,7 +1,7 @@
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	3.2.1
-Release:	%mkrel 1
+Version:	3.3.1
+Release:	1
 License:	GPLv2+
 Group:		System/Servers
 URL:		http://wordpress.org/
@@ -45,8 +45,6 @@ sed -i -e "s/add_action/#add_action/g" wp-includes/update.php
 %build
 
 %install
-rm -rf %{buildroot}
-
 install -d %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
 install -d %{buildroot}%{_sysconfdir}/%{name}
 install -d %{buildroot}/var/www/%{name}
@@ -78,21 +76,7 @@ EOF
 rm -f %{buildroot}/var/www/%{name}/license.txt
 cp %{SOURCE1} ./README.install.urpmi
 
-%post
-%if %mdkversion < 201010
-%_post_webapp
-%endif
-
-%postun
-%if %mdkversion < 201010
-%_postun_webapp
-%endif
-
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc README.install.urpmi
 %doc license.txt
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
