@@ -1,6 +1,6 @@
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	3.3.1
+Version:	3.4.1
 Release:	1
 License:	GPLv2+
 Group:		System/Servers
@@ -10,7 +10,6 @@ Source1:	README.install.urpmi
 Requires:	apache-mod_php
 Requires:	php-mysql
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 WordPress is a state-of-the-art, semantic, personal publishing platform with a
