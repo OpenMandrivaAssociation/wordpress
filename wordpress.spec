@@ -1,6 +1,6 @@
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	3.4.1
+Version:	3.5
 Release:	1
 License:	GPLv2+
 Group:		System/Servers
