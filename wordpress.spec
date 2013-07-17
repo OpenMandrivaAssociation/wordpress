@@ -1,7 +1,7 @@
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	3.5
-Release:	1
+Version:	3.5.1
+Release:	2
 License:	GPLv2+
 Group:		System/Servers
 URL:		http://wordpress.org/
@@ -15,8 +15,8 @@ BuildArch:	noarch
 WordPress is a state-of-the-art, semantic, personal publishing platform with a
 focus on aesthetics, Web standards, and usability. It was born out of a desire
 for an elegant, well-architectured personal publishing system, and is the
-official successor to b2/cafelog. While primarily geared towards functioning as
-a Weblog, it is also a flexible CMS capable of managing many types of Web
+official successor to b2/cafelog. While primarily geared towards functioning
+as a Weblog, it is also a flexible CMS capable of managing many types of Web
 sites. In addition to the basic Weblog functions, it also has an integrated
 link manager (e.g. for blogrolls), XFN support, support for "static" pages,
 Atom and RSS feeds for both content and comments, XML-RPC blogging API support
@@ -58,7 +58,7 @@ Alias /%{name} /var/www/%{name}
 
 <Directory /var/www/%{name}>
     AllowOverride None
-    Allow from All
+    Require all granted
 
 #    Options FollowSymlinks
 #    RewriteEngine On
