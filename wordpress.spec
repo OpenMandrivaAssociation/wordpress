@@ -1,7 +1,7 @@
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	3.5.1
-Release:	2
+Version:	4.0.1
+Release:	1
 License:	GPLv2+
 Group:		System/Servers
 URL:		http://wordpress.org/
