@@ -3,5 +3,6 @@ removed_sources:
   wordpress-3.5.1.tar.gz: 3c1b6e4da8132aa31408bbd2d4e86062a99b77ef
   wordpress-4.0.1.tar.gz: ef1bd7ca90b67e6d8f46dc2e2a78c0ec4c2afb40
   wordpress-4.1.1.tar.gz: 15d38fe6c73121a20e63ccd8070153b89b2de6a9
-sources:
   wordpress-4.2.tar.gz: 04e30f7f044be8b991fceeeb197987455bec08f9
+sources:
+  wordpress-4.2.1.tar.gz: c93a39be9911591b19a94743014be3585df0512f
