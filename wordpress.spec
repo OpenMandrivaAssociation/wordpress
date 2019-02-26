@@ -1,6 +1,6 @@
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	4.2.1
+Version:	5.1
 Release:	1
 License:	GPLv2+
 Group:		System/Servers
@@ -8,7 +8,7 @@ URL:		http://wordpress.org/
 Source0:	http://wordpress.org/%{name}-%{version}.tar.gz
 Source1:	README.install.urpmi
 Requires:	apache-mod_php
-Requires:	php-mysql
+Requires:	php-mysqlnd
 BuildArch:	noarch
 
 %description
