@@ -1,3 +1,5 @@
+%undefine _debugsource_packages
+
 Summary:	Personal publishing platform
 Name:		wordpress
 Version:	6.5.3
