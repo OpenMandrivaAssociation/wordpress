@@ -1,13 +1,13 @@
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	6.4.3
+Version:	6.5.3
 Release:	1
 License:	GPLv2+
 Group:		System/Servers
 URL:		http://wordpress.org/
 Source0:	http://wordpress.org/%{name}-%{version}.tar.gz
 Source1:	README.install.urpmi
-Requires:	apache-mod_php
+Requires:	(apache-mod_php or nginx)
 Requires:	php-mysqlnd
 BuildArch:	noarch
 
@@ -24,14 +24,7 @@ Atom and RSS feeds for both content and comments, XML-RPC blogging API support
 cruft-free URL generation, a flexible theme system, and an advanced plugin API.
 
 %prep
-
-%setup -q -n %{name}
-
-# clean up CVS stuff
-for i in `find . -type d -name CVS` `find . -type f -name .cvs\*` `find . -type f -name .#\*`; do
-    if [ -e "$i" ]; then rm -r $i; fi >&/dev/null
-done
-
+%autosetup -p1 -n %{name}
 # fix dir perms
 find . -type d | xargs chmod 755
 
@@ -46,17 +39,17 @@ sed -i -e "s/add_action/#add_action/g" wp-includes/update.php
 %install
 install -d %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d
 install -d %{buildroot}%{_sysconfdir}/%{name}
-install -d %{buildroot}/var/www/%{name}
+install -d %{buildroot}/srv/www/%{name}
 
 #cp %{SOURCE1} ./README.install.urpmi
 
-cp -aRf * %{buildroot}/var/www/%{name}/
+cp -aRf * %{buildroot}/srv/www/%{name}/
 
 cat > %{buildroot}%{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf << EOF
 
-Alias /%{name} /var/www/%{name}
+Alias /%{name} /srv/www/%{name}
 
-<Directory /var/www/%{name}>
+<Directory /srv/www/%{name}>
     AllowOverride None
     Require all granted
 
@@ -79,4 +72,4 @@ cp %{SOURCE1} ./README.install.urpmi
 %doc README.install.urpmi
 %doc license.txt
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
-/var/www/%{name}
+/srv/www/%{name}
