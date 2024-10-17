@@ -6,7 +6,7 @@ Version:	6.5.3
 Release:	1
 License:	GPLv2+
 Group:		System/Servers
-URL:		http://wordpress.org/
+URL:		https://wordpress.org/
 Source0:	http://wordpress.org/%{name}-%{version}.tar.gz
 Source1:	README.install.urpmi
 Requires:	(apache-mod_php or nginx)
