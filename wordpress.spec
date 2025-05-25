@@ -2,7 +2,7 @@
 
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	6.8
+Version:	6.8.1
 Release:	1
 License:	GPLv2+
 Group:		System/Servers
