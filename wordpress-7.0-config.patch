@@ -1,0 +1,37 @@
+diff -up wordpress/wp-config-sample.php.omv~ wordpress/wp-config-sample.php
+--- wordpress/wp-config-sample.php.omv~	2026-04-17 17:19:20.804860145 +0200
++++ wordpress/wp-config-sample.php	2026-04-17 17:27:22.428061987 +0200
+@@ -18,15 +18,29 @@
+  * @package WordPress
+  */
+ 
++// OM: Try to automatically determine our URL
++$proto = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https://' : 'http://';
++if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
++	$proto = 'https://';
++}
++define('WP_HOME', $proto . ($_SERVER['HTTP_HOST'] ?? 'localhost'));
++define('WP_SITEURL', $proto . ($_SERVER['HTTP_HOST'] ?? 'localhost'));
++
++// OM: Disable the cron bits, we run them as timers
++define('DISABLE_WP_CRON', true);
++
++// OM: Increase memory limit, WP is a memory hog
++define('WP_MEMORY_LIMIT', '256M');
++
+ // ** Database settings - You can get this info from your web host ** //
+ /** The name of the database for WordPress */
+-define( 'DB_NAME', 'database_name_here' );
++define( 'DB_NAME', 'wordpress' );
+ 
+ /** Database username */
+-define( 'DB_USER', 'username_here' );
++define( 'DB_USER', 'wordpress' );
+ 
+-/** Database password */
+-define( 'DB_PASSWORD', 'password_here' );
++/** Database password [it's better to update this, but the DB is protected by listening on localhost only */
++define( 'DB_PASSWORD', 'wordpress' );
+ 
+ /** Database hostname */
+ define( 'DB_HOST', 'localhost' );

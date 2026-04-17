@@ -1,0 +1,50 @@
+Wordpress is a database driven blogging program designed to make it exceedingly
+easy to publish an online blog, sometimes also called a weblog or journal.
+
+Once this package is installed, there are a few configuration items which need
+to be performed before the blog is usable.  First, you need to establish a
+username and password to connect to your MariaDB database as, and make both
+MariaDB and Wordpress aware of this.  Let's start by creating the database and the
+username / password inside MariaDB first:
+
+  # mariadb
+  mariadb> create database wordpress;
+  Query OK, 1 row affected (0.00 sec)
+
+  mariadb> grant all privileges on wordpress.* to wordpress identified by 'Your password';
+  Query OK, 0 rows affected (0.00 sec)
+
+  mariadb> flush privileges;
+  Query OK, 0 rows affected (0.00 sec)
+
+  mariadb> exit
+  Bye
+  #
+
+When using the database from a different IP address, you may need to run
+variations of the "grant" command:
+mariadb> grant all privileges on wordpress.* to wordpress@localhost identified by 'Your password';
+   OR
+mariadb> grant all privileges on wordpress.* to wordpress@'%' identified by 'Your password';
+
+This has created an empty database called 'wordpress', created a user named
+'wordpress' with a password of 'Your password', and given the 'wordpress' user
+total permission over the 'wordpress' database.  Obviously, you'll want to
+select a different password, and you may want to choose different database and
+user names depending on your installation.  The specific values you choose are
+not constrained, they simply need to be consistent between the database and the
+config file.
+
+If you're planning to use wordpress with nginx, enable the wordpress PHP engine:
+# systemctl enable --now php-fpm@wordpress
+This is not necessary when using apache (which uses a global PHP module for all
+webapps you may be hosting).
+
+Next, you need to edit your /etc/wordpress/wp-config.php file to reflect the
+values you've chosen.  These values will go in the appropriate places at the
+beginning of that file.
+
+Once that's done and the database server and web server have been started, 
+open a web browser to http://localhost/wordpress/wp-admin/install.php and 
+follow the instructions given to you on the pages you see to set up the 
+database tables and begin publishing your blog.
