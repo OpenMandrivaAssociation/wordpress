@@ -1,4 +1,4 @@
-%define beta RC2
+%define beta RC3
 
 Summary:	Personal publishing platform
 Name:		wordpress
