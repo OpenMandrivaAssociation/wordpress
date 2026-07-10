@@ -2,7 +2,7 @@
 
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	7.0%{?beta:~%{beta}}
+Version:	7.0.1%{?beta:~%{beta}}
 Release:	1
 License:	GPLv2+
 Group:		System/Servers
