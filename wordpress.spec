@@ -3,7 +3,7 @@
 Summary:	Personal publishing platform
 Name:		wordpress
 Version:	7.1.4%{?beta:~%{beta}}
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		System/Servers
 URL:		https://wordpress.org/
@@ -150,7 +150,10 @@ php_admin_value[upload_max_filesize] = 10G
 php_admin_value[post_max_size] = 10G
 ; Backup plugins etc. may take a long time
 php_admin_value[max_execution_time] = 300
-php_admin_value[open_basedir] = /srv/www/%{name}:/tmp
+; %{_sysconfdir}/%{name}: wp-config.php in the docroot is a symlink there, and
+; open_basedir checks the resolved path -- without it WordPress cannot load its
+; own configuration ("File(...wp-config.php) is not within the allowed path(s)").
+php_admin_value[open_basedir] = /srv/www/%{name}:%{_sysconfdir}/%{name}:/tmp
 php_admin_value[session.save_path] = /run/php-fpm/sessions/wordpress
 
 php_admin_value[opcache.memory_consumption] = 128
@@ -222,9 +225,12 @@ rm -f %{buildroot}/var/www/%{name}/license.txt
 cp %{SOURCE1} ./README.install.omv
 
 %post
-while grep -q 'put your unique phrase here' /srv/www/%{name}/wp-config.php; do
+# Edit the REAL file. `sed -i` on the docroot symlink replaced the symlink with
+# a regular file: the keys landed in an unpackaged copy, %{_sysconfdir} kept the
+# placeholders, and the next update put the symlink back over the keyed copy.
+while grep -q 'put your unique phrase here' %{_sysconfdir}/%{name}/wp-config.php; do
 	KEY="$(head -c 64 /dev/urandom | base64 | tr -dc 'a-zA-Z0-9' | head -c 64)"
-	sed -i "\$H;x;1,/put your unique phrase here/s@put your unique phrase here@${KEY}@;1d" /srv/www/%{name}/wp-config.php
+	sed -i "\$H;x;1,/put your unique phrase here/s@put your unique phrase here@${KEY}@;1d" %{_sysconfdir}/%{name}/wp-config.php
 done
 systemctl enable --now wordpress-cron.timer
 systemctl enable --now php-fpm@wordpress
