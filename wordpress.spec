@@ -2,8 +2,8 @@
 
 Summary:	Personal publishing platform
 Name:		wordpress
-Version:	7.1.4%{?beta:~%{beta}}
-Release:	2
+Version:	7.1.5%{?beta:~%{beta}}
+Release:	1
 License:	GPLv2+
 Group:		System/Servers
 URL:		https://wordpress.org/
